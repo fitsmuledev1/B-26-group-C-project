@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="zipcodes-suite.xml" />
+	<munit:test name="zipcodes-suiteTest" doc:id="4003a70c-4e2c-4b22-8c34-5e5b6cd230ed" expectedErrorType="APIKIT:BAD_REQUEST">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:BAD_REQUEST" doc:id="d7245da8-4f4d-4e92-92f9-90b3b8dbf36a" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="zipcodes-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="11c94260-5483-4b97-9d6c-1ae9fba2c9cf" name="zipcodes-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="89eea0b2-88bb-4b0f-8ef5-62abc9754bf2" actual="#[vars.httpStatus]" expected="#[400]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="zipcodes-suiteTest1" doc:id="4c088ab7-60e7-41ff-8b86-c35a4a37aabe" expectedErrorType="APIKIT:NOT_FOUND">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:NOT_FOUND" doc:id="a461e020-85d4-4615-975a-3c2ffe854dda" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="zipcodes-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="54f1f7e4-5b8d-46fb-9b27-f5eeba9479ce" name="zipcodes-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="b133e430-45e9-469c-b346-e3a404f6d47d" actual="#[vars.httpStatus]" expected="#[404]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="zipcodes-suiteTest2" doc:id="3cecb563-d3a3-4e5b-9794-32235faf3c97" expectedErrorType="APIKIT:METHOD_NOT_ALLOWED">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:METHOD_NOT_ALLOWED" doc:id="b53cd799-2a50-4f4b-bdfa-dc486de9512f" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="zipcodes-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:METHOD_NOT_ALLOWED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="b8116160-87b8-45ba-a801-563b02087f4f" name="zipcodes-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="92244744-f308-4430-b259-3c5c3aaa57da" actual="#[vars.httpStatus]" expected="#[405]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="zipcodes-suiteTest3" doc:id="fc520575-584c-4225-8e1e-e48a9b1fa91d" expectedErrorType="APIKIT:NOT_ACCEPTABLE">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:NOT_ACCEPTABLE" doc:id="d62f82e5-d5e5-49f9-88c9-0cc3df0c248e" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="zipcodes-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_ACCEPTABLE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="e029f8bc-cd02-4b48-a77a-5f793dad7e1b" name="zipcodes-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="33ed75c8-60b7-448c-83f6-1edd0a4c2797" actual="#[vars.httpStatus]" expected="#[406]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="zipcodes-suiteTest4" doc:id="209dc190-f665-48b1-8975-340f360745f1" expectedErrorType="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:UNSUPPORTED_MEDIA_TYPE" doc:id="1ff908b1-36ab-4a50-9e2b-6941f7d16fd9" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="zipcodes-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:UNSUPPORTED_MEDIA_TYPE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="bb8e0b28-465d-440f-b64e-fc678b07e91d" name="zipcodes-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="ef3ad95d-30f8-43b3-af87-c89cc8d44f03" actual="#[vars.httpStatus]" expected="#[415]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="zipcodes-suiteTest5" doc:id="35dd92c4-5424-46c4-a89c-30eafdc6b5f6" expectedErrorType="APIKIT:NOT_IMPLEMENTED">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:NOT_IMPLEMENTED" doc:id="301efccb-a408-49a2-9751-253f4af48d24" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="zipcodes-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_IMPLEMENTED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="72e88534-433c-4dab-9294-0700439a4c61" name="zipcodes-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="abb535f4-3eb3-4454-ac07-d810f0ba089d" actual="#[vars.httpStatus]" expected="#[501]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="zipcodes-suiteTest6" doc:id="ac07d93e-88e0-4783-ac35-573c47e89217" expectedErrorType="APIKIT:NOT_FOUND">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:NOT_FOUND" doc:id="517fcda4-a0e4-46ae-8f74-c840bd524d1e" processor="apikit:console">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="zipcodes-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="b739c30c-3e07-45ea-9ef5-385e90c4b888" name="zipcodes-console"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="ade2db81-8f55-4ba8-a856-697fefd4de67" actual="#[vars.httpStatus]" expected="#[404]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="get:\project1\(zipcodes):zipcodes-config-test" doc:id="bf9868be-0ad7-4f74-a873-ce4fdb0dc930" >
+		<munit:behavior >
+			<munit:set-event doc:name="Set Input" doc:id="78b4693a-5a12-450a-9765-1b114264a9b0" >
+				<munit:payload value="#[readUrl('classpath://getproject1zipcodeszipcodesconfigtest\set-event_payload1.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://getproject1zipcodeszipcodesconfigtest\set-event_attributes1.dwl')]" />
+				<munit:variables >
+					<munit:variable key="outboundHeaders" value="#[readUrl('classpath://getproject1zipcodeszipcodesconfigtest\set-event_variable_1.dwl')]" />
+				</munit:variables>
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to get:\project1\(zipcodes):zipcodes-config" doc:id="61626d4c-0a6c-4af5-bbde-bf00429488d3" name="get:\project1\(zipcodes):zipcodes-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="303592a0-1d0b-45f6-a4a1-495cc4d85a19" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import getproject1zipcodeszipcodesconfigtest::assert_expression_payload1
+---
+assert_expression_payload1::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

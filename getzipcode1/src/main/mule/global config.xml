@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	
+		
+	    <http:listener-config name="zipcodes-httpListenerConfig1">
+        <http:listener-connection host="0.0.0.0" port="8081" />
+    </http:listener-config>
+    <apikit:config name="zipcodes-config" api="resource::61d3eb15-5642-4319-abdd-70e91237f392:zipcodes:1.0.0:raml:zip:zipcodes.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <http:request-config name="HTTP_Request_configuration1" doc:name="HTTP Request configuration" doc:id="1caca6f3-0969-4898-9616-7193d8fe0cac" >
+		<http:request-connection host="api.zip-codes.com" />
+	</http:request-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="b547f024-a9f6-4982-a15e-430bb0c9f0b1">
+		<http:request-connection host="api.zip-codes.com" protocol="HTTPS"/>
+	</http:request-config>
+	<http:request-config name="HTTP_Request_configuration2" doc:name="HTTP Request configuration" doc:id="1242a6d6-d2af-40ab-b717-2b99cb7bf092" basePath="/ZipCodesAPI.svc/1.0" >
+		<http:request-connection host="api.zip-codes.com" protocol="HTTPS"/>
+	</http:request-config></mule>
